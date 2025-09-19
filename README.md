@@ -1,10 +1,6 @@
 # Client-Side POST Request Sender/Receiver with Netlify Function Backend
 
-This project provides a client-side web application for sending POST requests and displaying responses, now integrated with a simple Netlify serverless function for data handling. It is built using HTML, Tailwind CSS, and vanilla JavaScript for the frontend.
-
-## Created By
-
-This was created by [Dhruv Gowda](dhruv.ftp.sh).
+This project provides a client-side web application for sending POST requests and displaying responses, integrated with a simple Netlify serverless function for data handling. It is built using HTML, Tailwind CSS, and vanilla JavaScript for the frontend.
 
 ## Features
 
@@ -58,11 +54,7 @@ This was created by [Dhruv Gowda](dhruv.ftp.sh).
     }
     ```
 
-### 3. Update Footer Credit
-
-The footer credit "Created by Dhruv Gowda" with a link to `dhruv.ftp.sh` is expected to be present in `index.html` (and `receive.html`) within the main footer paragraph, next to the Creative Commons link. The `script.js` file validates the presence and integrity of this credit. Any attempts to remove or modify this credit in the HTML files or through browser developer tools will result in the entire footer displaying "Access Denied". Therefore, **do not attempt to change this credit.**
-
-### 4. Configure Form Fields (HTML and `config.json`)
+### 3. Configure Form Fields (HTML and `config.json`)
 
 The input fields for the POST request form are defined directly in `index.html`. `config.json` also contains a `formFields` array which `script.js` uses to validate and collect data from the frontend.
 
@@ -95,19 +87,19 @@ The input fields for the POST request form are defined directly in `index.html`.
     *   Adjust the `required` attribute in `index.html` (e.g., add `required` for mandatory fields).
     *   Update the corresponding `label`, `placeholder`, and `required` properties within the `formFields` array in `config.json` for consistency.
 
-### 5. Customize Styling
+### 4. Customize Styling
 
 *   This project uses Tailwind CSS. You can modify the existing Tailwind classes directly in `index.html` and `receive.html` to change colors, fonts, spacing, etc.
 *   Custom CSS for gradients is embedded in the `<style>` tags. You can modify these for different color schemes.
 
-### 6. Adjust JavaScript Logic (`script.js`)
+### 5. Adjust JavaScript Logic (`script.js`)
 
 *   Open `script.js`.
 *   On the `index.html` page, the form submission now sends a `fetch` POST request to the `backendApiUrl` configured in `config.json`.
 *   On `receive.html`, `script.js` sends a `fetch` GET request to `backendApiUrl` to retrieve all stored data from the backend, sorts it by timestamp (newest first), and renders it dynamically on the page.
 *   The "Clear All Data" button now sends a `fetch` DELETE request to `backendApiUrl` to clear all data on the backend.
 
-### 7. Toggle "Receive Data" Navigation Tab
+### 6. Toggle "Receive Data" Navigation Tab
 
 *   Open `config.json`.
 *   To remove the "Receive Data" tab from the navigation header on `index.html`, set `showReceiveTab` to `false`:
@@ -128,19 +120,3 @@ The input fields for the POST request form are defined directly in `index.html`.
 ## License
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).
-
-**You are free to:**
-
-*   **Share** – copy and redistribute the material in any medium or format for any purpose, even commercially.
-*   **Adapt** – remix, transform, and build upon the material for any purpose, even commercially.
-
-**Under the following terms:**
-
-*   **Attribution** – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-
-The attribution notice "Created by Dhruv Gowda" with a link to `dhruv.ftp.sh` is enforced by `script.js` on all pages. This credit is expected to be present in the footer of `index.html` and `receive.html`. Please retain it. Any attempts to remove or modify this credit will result in the footer displaying "Access Denied" to ensure the attribution terms are met.
-
-
-## Other
-
-* **Yes, I did obfuscate it.**
