@@ -122,6 +122,6 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 The attribution notice "Created by Dhruv Gowda" with a link to `dhruv.ftp.sh` is enforced by `script.js` on all pages. This credit is expected to be present in the footer of `index.html` and `receive.html`. Please retain it. Any attempts to remove or modify this credit will result in the footer displaying "Access Denied" to ensure the attribution terms are met.
 
 
-## etc.
+## Other
 
 * **Yes, I did obfuscate it.**
