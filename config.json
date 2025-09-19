@@ -1,5 +1,5 @@
 {
-  "pageTitle": "POST Request Hub",
+  "pageTitle": "TwstTitle",
   "siteHeader": "Dynamic Request Client",
   "postSectionTitle": "Send a POST Request",
   "backendApiUrl": "https://dgpersonalstuff.github.io/postsenderandreciever/recieve",
@@ -9,6 +9,6 @@
     { "label": "Subject", "name": "subject", "type": "text", "placeholder": "Request Subject", "required": true },
     { "label": "Message", "name": "message", "type": "textarea", "placeholder": "Your detailed message", "required": true }
   ],
-  "receivePageTitle": "Received Data Display",
-  "showReceiveTab": true
+  "receivePageTitle": "Received your Data!",
+  "showReceiveTab": false
 }
