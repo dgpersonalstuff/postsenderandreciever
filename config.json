@@ -1,12 +1,14 @@
 {
-  "pageTitle": "TwstTitle",
+  "pageTitle": "POST Request Hub",
   "siteHeader": "Dynamic Request Client",
   "postSectionTitle": "Send a POST Request",
-  "backendApiUrl": "https://dgpersonalstuff.github.io/postsenderandreciever/receive",
+  "backendApiUrl": "https://melodious-parfait-a67155.netlify.app/.netlify/functions/posts",
   "formFields": [
     { "label": "Name", "name": "name", "type": "text", "placeholder": "Your name", "required": true },
+    { "label": "Email", "name": "email", "type": "email", "placeholder": "your@example.com", "required": false },
+    { "label": "Subject", "name": "subject", "type": "text", "placeholder": "Request Subject", "required": true },
     { "label": "Message", "name": "message", "type": "textarea", "placeholder": "Your detailed message", "required": true }
   ],
-  "receivePageTitle": "Received your Data!",
-  "showReceiveTab": false
+  "receivePageTitle": "Received Data Display",
+  "showReceiveTab": true
 }
