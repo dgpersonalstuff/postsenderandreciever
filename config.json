@@ -2,7 +2,7 @@
   "pageTitle": "POST Request Hub",
   "siteHeader": "Dynamic Request Client",
   "postSectionTitle": "Send a POST Request",
-  "backendApiUrl": "http://localhost:3000/api/posts",
+  "backendApiUrl": "https://dgpersonalstuff.github.io/postsenderandreciever/recieve",
   "formFields": [
     { "label": "Name", "name": "name", "type": "text", "placeholder": "Your name", "required": true },
     { "label": "Email", "name": "email", "type": "email", "placeholder": "your@example.com", "required": false },
