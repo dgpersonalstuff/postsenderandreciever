@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
           const result = await res.json();
           responseContainer.classList.remove('hidden');
-          responseData.innerHTML = `\n          <p class="text-green-700 font-semibold mb-2">Request successfully sent and stored!</p>\n          <p class="text-sm text-gray-600 mb-4">You can view all received data on the <a href="./receive.html" class="text-indigo-600 hover:underline">Receive Data page</a>.</p>\n          <h3 class="text-xl font-semibold text-indigo-800 mb-2">Sent Data:</h3>\n          <pre class="whitespace-pre-wrap text-sm text-gray-700 bg-white p-4 rounded-xl overflow-x-auto border border-indigo-100 shadow-inner">${JSON.stringify(result, null, 2)}</pre>\n        `;
+          responseData.innerHTML = `\n          <p class="text-2xl text-green-700 font-semibold mb-4">Request successfully sent and stored!</p>\n          <p class="text-lg text-gray-600 mb-6">You can view all received data on the <a href="./receive.html" class="text-indigo-600 hover:underline">Receive Data page</a>.</p>\n          <h3 class="text-2xl font-semibold text-indigo-800 mb-4">Sent Data:</h3>\n          <pre class="whitespace-pre-wrap text-lg text-gray-700 bg-white p-6 rounded-xl overflow-x-auto border border-indigo-100 shadow-inner">${JSON.stringify(result, null, 2)}</pre>\n        `;
           postForm.reset();
         } catch (error) {
           console.error('Error sending POST request:', error);
           responseContainer.classList.remove('hidden');
-          responseData.innerHTML = `<p class="text-red-600 font-semibold">Error: ${error.message}</p><p class="text-sm text-gray-600 mt-2">Please ensure the backend server is running and accessible at ${siteConfig.backendApiUrl}.</p>`;
+          responseData.innerHTML = `<p class="text-red-600 font-semibold text-xl">Error: ${error.message}</p><p class="text-lg text-gray-600 mt-4">Please ensure the backend server is running and accessible at ${siteConfig.backendApiUrl}.</p>`;
         }
       });
     }
@@ -93,19 +93,19 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
           const existingRequests = await res.json();
           if (existingRequests.length === 0) {
-            displayContentContainer.innerHTML = `\n              <p class="text-lg text-gray-700">No data received yet. Send a request from the <a href="./index.html" class="text-indigo-600 hover:underline">Send Request page</a>.</p>\n            `;
+            displayContentContainer.innerHTML = `\n              <p class="text-xl text-gray-700">No data received yet. Send a request from the <a href="./index.html" class="text-indigo-600 hover:underline">Send Request page</a>.</p>\n            `;
             return;
           }
           existingRequests.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
           existingRequests.forEach(request => {
             const requestBlock = document.createElement('div');
-            requestBlock.className = 'mb-8 p-6 bg-white rounded-xl shadow-md border border-gray-100';
-            requestBlock.innerHTML = `\n              <h4 class="text-xl font-semibold text-indigo-800 mb-2">Request ID: ${request.id}</h4>\n              <p class="text-sm text-gray-500 mb-4">Timestamp: ${new Date(request.timestamp).toLocaleString()}</p>\n              <pre class="whitespace-pre-wrap text-sm text-gray-700 bg-indigo-50 p-4 rounded-lg overflow-x-auto border border-indigo-100">${JSON.stringify(request, null, 2)}</pre>\n            `;
+            requestBlock.className = 'mb-10 p-8 bg-white rounded-xl shadow-md border border-gray-100';
+            requestBlock.innerHTML = `\n              <h4 class="text-2xl font-semibold text-indigo-800 mb-4">Request ID: ${request.id}</h4>\n              <p class="text-lg text-gray-500 mb-6">Timestamp: ${new Date(request.timestamp).toLocaleString()}</p>\n              <pre class="whitespace-pre-wrap text-lg text-gray-700 bg-indigo-50 p-6 rounded-lg overflow-x-auto border border-indigo-100">${JSON.stringify(request, null, 2)}</pre>\n            `;
             displayContentContainer.appendChild(requestBlock);
           });
         } catch (error) {
           console.error('Error fetching received data:', error);
-          displayContentContainer.innerHTML = `<p class="text-red-600 font-semibold">Error loading data: ${error.message}</p><p class="text-sm text-gray-600 mt-2">Please ensure the backend server is running and accessible at ${siteConfig.backendApiUrl}.</p>`;
+          displayContentContainer.innerHTML = `<p class="text-red-600 font-semibold text-xl">Error loading data: ${error.message}</p><p class="text-lg text-gray-600 mt-4">Please ensure the backend server is running and accessible at ${siteConfig.backendApiUrl}.</p>`;
         }
       }
       renderReceivedData();
