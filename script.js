@@ -1,23 +1,4 @@
 let siteConfig = {};
-const ATTRIBUTION_NAME = "Dhruv Gowda";
-const ATTRIBUTION_LINK = "dhruv.ftp.sh";
-const CREDIT_CHECK_DELAY = 100;
-function enforceCredit() {
-  const footerElement = document.querySelector('footer');
-  if (!footerElement) return;
-  setTimeout(() => {
-    let creditFound = false;
-    const attributionLink = footerElement.querySelector(`a[href*="${ATTRIBUTION_LINK}"]`);
-    if (attributionLink && attributionLink.textContent.includes(ATTRIBUTION_NAME)) {
-      creditFound = true;
-    }
-    if (!creditFound) {
-      footerElement.innerHTML = `<div class="container mx-auto text-center text-red-500 font-bold text-2xl py-8">Access Denied</div>`;
-      document.body.style.pointerEvents = 'none';
-      console.error("Credit attribution not found or modified. Access Denied.");
-    }
-  }, CREDIT_CHECK_DELAY);
-}
 function initializeUI(config) {
   const pageTitleElement = document.getElementById('page-title');
   const siteHeaderElement = document.getElementById('site-header');
@@ -35,7 +16,6 @@ function initializeUI(config) {
   }
 }
 document.addEventListener('DOMContentLoaded', async () => {
-  enforceCredit();
   try {
     const response = await fetch('./config.json');
     if (!response.ok) {
