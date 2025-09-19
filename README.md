@@ -1,6 +1,6 @@
-# Client-Side POST Request Sender/Receiver with Backend Integration
+# Client-Side POST Request Sender/Receiver with Netlify Function Backend
 
-This project provides a client-side web application for sending POST requests and displaying responses, now integrated with a simple Node.js backend for data persistence. It is built using HTML, Tailwind CSS, and vanilla JavaScript for the frontend, and Node.js with Express for the backend.
+This project provides a client-side web application for sending POST requests and displaying responses, now integrated with a simple Netlify serverless function for data handling. It is built using HTML, Tailwind CSS, and vanilla JavaScript for the frontend.
 
 ## Created By
 
@@ -8,23 +8,26 @@ This was created by [Dhruv Gowda](dhruv.ftp.sh).
 
 ## Features
 
-*   **Request Sender:** A form to send POST requests to a configurable backend API.
-*   **Data Receiver/Display:** A page (`receive.html`) to fetch and display all previously stored data from the backend.
-*   Data is persisted on the backend (using a local JSON file for this example).
+*   **Request Sender:** A form to send POST requests to a configurable Netlify function API.
+*   **Data Receiver/Display:** A page (`receive.html`) to fetch and display all previously stored data from the Netlify function.
+*   Data is managed by a Netlify serverless function.
 *   Displays stored JSON data with new entries at the top.
 *   Clean, modern UI with an improved Tailwind CSS design.
 *   Configurable backend API URL.
 
 ## How to View It
 
-1.  **Save the files:** Save all the provided files into a single folder. Note that backend files are in a `backend/` subdirectory.
-2.  **Set up the Backend:**
-    *   Navigate to the `backend/` directory in your terminal.
-    *   Install dependencies: `npm install`
-    *   Start the server: `node server.js`
-    *   The backend will run on `http://localhost:3000` by default. You can configure this in `backend/server.js` if needed.
-3.  **Open `index.html`:** Simply open the `index.html` file in your web browser. This frontend part can be hosted on GitHub Pages or any static file server.
-4.  **Ensure Backend is Running:** For the frontend to function correctly (sending and receiving data), the backend server (`server.js`) must be running.
+1.  **Save the files:** Save all the provided files into a single folder. Note that the Netlify function files are in a `netlify/functions/` subdirectory.
+2.  **Deploy to Netlify (Backend):**
+    *   Create a new site on Netlify and connect it to your Git repository (e.g., GitHub).
+    *   Ensure the `netlify.toml` file is at the root of your repository and the `netlify/functions/posts.js` file is present.
+    *   Netlify will automatically detect and deploy the function. Your function endpoint will be accessible at `https://your-netlify-app-name.netlify.app/.netlify/functions/posts`.
+    *   For this project, the Netlify app is deployed at `https://melodious-parfait-a67155.netlify.app/`.
+    *   **Note:** The Netlify function in this example uses an in-memory array for data storage. This means the data is **ephemeral** and will reset if the function goes cold or the server instance is reloaded. For persistent data, you would need to integrate with an external database service.
+3.  **Host Frontend (e.g., GitHub Pages):**
+    *   Upload the HTML, CSS, and JavaScript files (`index.html`, `receive.html`, `script.js`, `config.json`, `package.json`, `README.md`) to your GitHub Pages repository.
+    *   The `index.html` file will be the entry point.
+4.  **Ensure Netlify Function is Deployed:** For the frontend to function correctly (sending and receiving data), the Netlify function must be deployed and accessible.
 5.  Navigate between `index.html` (Send Request) and `receive.html` (Receive Data) using the header navigation.
 
 ## How to Personalize It
@@ -47,12 +50,11 @@ This was created by [Dhruv Gowda](dhruv.ftp.sh).
 
 *   Open `config.json`.
 *   The `backendApiUrl` value defines the endpoint where the frontend will send and retrieve data.
-*   If running the provided backend locally, it will be `http://localhost:3000/api/posts`.
-*   If you deploy your backend to a different URL, update this value accordingly.
+*   If you deploy your Netlify app to a different URL, update this value accordingly.
 
     ```json
     {
-      "backendApiUrl": "http://localhost:3000/api/posts" // Change this if your backend is elsewhere
+      "backendApiUrl": "https://melodious-parfait-a67155.netlify.app/.netlify/functions/posts" // Change this if your Netlify function is elsewhere
     }
     ```
 
@@ -116,11 +118,11 @@ The input fields for the POST request form are defined directly in `index.html`.
     }
     ```
 
-## Backend (Node.js Express)
+## Backend (Netlify Serverless Function)
 
-*   The backend is a simple Node.js Express server (`backend/server.js`).
-*   It exposes `POST /api/posts`, `GET /api/posts`, and `DELETE /api/posts` endpoints.
-*   It stores data in `backend/data.json` for persistence across server restarts.
+*   The backend logic is implemented as a Netlify serverless function (`netlify/functions/posts.js`).
+*   It exposes `POST /.netlify/functions/posts`, `GET /.netlify/functions/posts`, and `DELETE /.netlify/functions/posts` endpoints.
+*   It uses an **in-memory array** to store data. **This data is not persistent** and will reset when the function's instance is reloaded by Netlify (e.g., due to inactivity or new deployments).
 *   **CORS is enabled** to allow requests from any origin (e.g., your GitHub Pages frontend).
 
 ## License
